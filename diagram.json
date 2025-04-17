@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Hùng Anh Nguyễn",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -48, "left": -148.76, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -80.4, "left": 61.4, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -4.8,
+      "left": 57.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 108.6,
+      "left": 36.4,
+      "rotate": 180,
+      "attrs": {}
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 48.2, "left": 38.4, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5V", "ldr1:VCC", "red", [ "h0.15", "v19.2", "h163.2", "v-19.2" ] ],
+    [ "esp:5V", "relay1:VCC", "red", [ "h0.15", "v19.2", "h163.2", "v-105.6" ] ],
+    [ "esp:GND.2", "ldr1:GND", "black", [ "v0", "h9.6", "v163.2" ] ],
+    [ "esp:GND.2", "relay1:GND", "black", [ "v0", "h9.6", "v96" ] ],
+    [ "esp:23", "r1:2", "green", [ "h124.8", "v38.4" ] ],
+    [ "r1:1", "led1:A", "green", [ "h0" ] ],
+    [ "esp:GND.2", "led1:C", "black", [ "v0", "h124.8" ] ],
+    [ "esp:23", "relay1:IN", "green", [ "h19.2", "v96" ] ],
+    [ "ldr1:AO", "esp:34", "green", [ "h-67.2", "v58.3", "h-124.8", "v-163.2" ] ]
+  ],
+  "dependencies": {}
+}
